@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azzam Aloudah</title>
+<meta name="description" content="Data science and AI, from Riyadh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: one narrow column of plain text on warm near-black. Dark only, by choice. No accent colour. */
+:root{
+  --bg:#141413; --text:#E6E4DF; --muted:#9A968F; --hair:#2A2926; --underline:#57534E;
+  --sans:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono","IBM Plex Sans Arabic",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-text-size-adjust:100%}
+html[lang="ar"] body{font-size:18px;line-height:1.9}
+.page{max-width:36rem;margin-inline:auto;padding:40px 24px 48px;display:flex;flex-direction:column;gap:56px}
+@media (min-width:700px){.page{padding-top:12vh}}
+header{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+h1{font-size:inherit;font-weight:500;margin:0}
+h2{font-size:14px;font-weight:400;color:var(--muted);margin:0 0 10px}
+p{margin:0}
+p + p{margin-top:14px}
+a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--underline)}
+a:hover{text-decoration-color:var(--text)}
+:focus-visible{outline:1px solid var(--text);outline-offset:4px;border-radius:2px}
+.lang{font:inherit;font-size:15px;color:var(--muted);background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--underline)}
+.lang:hover{color:var(--text)}
+.handle{font-family:var(--mono);font-size:.92em}
+footer{border-top:1px solid var(--hair);padding-top:18px;font-size:14px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1 data-ar="عزام العودة">Azzam Aloudah</h1>
+    <button class="lang" id="lang" type="button" lang="ar">عربي</button>
+  </header>
+
+  <main style="display:contents">
+    <section>
+      <p data-ar="أنا عزام. أعمل في علم البيانات والذكاء الاصطناعي، وأشرح أدوات الذكاء الاصطناعي بالعربي للطلاب والموظفين. أسكن في الرياض.">I'm Azzam. I work in data science and AI, and I explain AI tools in Arabic for students and people at work. I live in Riyadh.</p>
+    </section>
+
+    <section>
+      <h2 data-ar="الآن">Now</h2>
+      <p data-ar="أنشر على X كل أسبوع. الأحد خبر مهم في الذكاء الاصطناعي، الثلاثاء شرح فكرة واحدة بلغة بسيطة، والخميس رأيي فيها.">I post on X every week. Sunday is the AI news that matters, Tuesday is one idea explained in plain words, and Thursday is what I think about it.</p>
+      <p data-ar="وعلى تيك توك أعلّم Claude وأدوات الذكاء الاصطناعي في فيديوهات قصيرة.">On TikTok I teach Claude and other AI tools in short videos.</p>
+    </section>
+
+    <section>
+      <h2 data-ar="الأدوات">Tools</h2>
+      <p data-ar="أكتب بـ Python و Java، ومعها PHP و HTML و CSS. أتكلم العربية والإنجليزية.">I write Python and Java, with some PHP, HTML and CSS. I speak Arabic and English.</p>
+    </section>
+
+    <section>
+      <h2 data-ar="التواصل">Elsewhere</h2>
+      <p data-ar="تجدني على X باسم <a href=&quot;https://x.com/AzzamAloudah&quot;><bdi class=&quot;handle&quot;>@AzzamAloudah</bdi></a>، وهي أسرع طريقة للتواصل معي.">Find me on X as <a href="https://x.com/AzzamAloudah"><bdi class="handle">@AzzamAloudah</bdi></a>. It's the fastest way to reach me.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span data-ar="الرياض، 2026">Riyadh, 2026</span>
+    <span data-ar="الخط: IBM Plex">Set in IBM Plex</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var nodes=[].slice.call(document.querySelectorAll('[data-ar]'));
+  nodes.forEach(function(n){n.setAttribute('data-en',n.innerHTML)});
+  var btn=document.getElementById('lang');
+  function setLang(l){
+    var ar=l==='ar';
+    document.documentElement.lang=ar?'ar':'en';
+    document.documentElement.dir=ar?'rtl':'ltr';
+    nodes.forEach(function(n){n.innerHTML=n.getAttribute(ar?'data-ar':'data-en')});
+    btn.textContent=ar?'English':'عربي';
+    btn.lang=ar?'en':'ar';
+    try{localStorage.setItem('lang',l)}catch(e){}
+  }
+  btn.addEventListener('click',function(){setLang(document.documentElement.lang==='ar'?'en':'ar')});
+  var saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
+  if(saved==='ar')setLang('ar');
+})();
+</script>
+</body>
+</html>
